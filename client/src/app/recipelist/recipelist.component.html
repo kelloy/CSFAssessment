@@ -1,1 +1,6 @@
-<p>recipelist works!</p>
+<p>Recipe List</p>
+<div *ngFor="let recipe of recipeArray" (click) = "go(recipe.id)">
+  {{recipe.title}}
+</div>
+
+<button type = "button" (click)="add()">Add</button>

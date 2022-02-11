@@ -1,1 +1,30 @@
-<p>recipeadd works!</p>
+<h1>My New Recipe</h1>
+<form [formGroup]="form" (ngSubmit)="save()">
+  <table>
+    <tr>
+      <td><label for = "title">Title</label></td>
+      <td><input type = "text" id = "title" formControlName = "title"></td>
+    </tr>
+    <tr>
+      <td><label for = "Instructions">Instructions</label></td>
+      <td><input type = "text" id = "description" formControlName = "instructions"></td>
+    </tr>
+    <tr>
+      <td><label for = "image">image</label></td>
+      <td><input type = "text" id = "image" formControlName = "image"></td>
+    </tr>
+  </table>
+  <table>
+    <button type = "button" (click)="addIngredient()">Add Ingredient</button>
+    <tbody formArrayName = "lineItems">
+      <tr *ngFor = "let lineGrp of formArray.controls;let i = index" [formGroup]="lineGrp">
+        <td>
+          <input type = "text" formControlName = "ingredient">
+        <button type="button" (click) = "deleteIngredient(i)">X</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type = "submit" [disabled]="form.invalid">Save</button>
+</form>
+<button type = "button" [routerLink]="['/']">Back</button>
